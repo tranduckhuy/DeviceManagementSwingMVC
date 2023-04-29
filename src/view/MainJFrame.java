@@ -6,7 +6,6 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,7 +31,7 @@ public class MainJFrame extends JFrame{
     
     private MyButton addBtn;
     private MyButton editBtn;
-    private MyButton saveBtn;
+    private MyButton printBtn;
     private MyButton deleteBtn;
     private MyButton cancelBtn;
     
@@ -64,7 +63,7 @@ public class MainJFrame extends JFrame{
         
         addBtn = new MyButton("Add");
         editBtn = new MyButton("Edit");
-        saveBtn = new MyButton("Save");
+        printBtn = new MyButton("Print");
         deleteBtn = new MyButton("Delete");
         cancelBtn = new MyButton("Cancel");
         
@@ -72,7 +71,7 @@ public class MainJFrame extends JFrame{
         controlPanel.setLayout(new FlowLayout());
         controlPanel.add(addBtn);
         controlPanel.add(editBtn);
-        controlPanel.add(saveBtn);
+        controlPanel.add(printBtn);
         controlPanel.add(deleteBtn);
         controlPanel.add(cancelBtn);
         
@@ -146,12 +145,12 @@ public class MainJFrame extends JFrame{
         editBtn.addActionListener(listener);
     }
     
-    public void addSaveBtnListener(ActionListener listener) {
-        saveBtn.addActionListener(listener);
-    }
-    
     public void addDeleteBtnListener(ActionListener listener) {
         deleteBtn.addActionListener(listener);
+    }
+    
+    public void addPrintBtnListener(ActionListener listener) {
+        printBtn.addActionListener(listener);
     }
     
     public void addCancelBtnListener(ActionListener listener) {

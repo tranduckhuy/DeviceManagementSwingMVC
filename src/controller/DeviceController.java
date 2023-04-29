@@ -3,8 +3,11 @@ package controller;
 import dao.DeviceDao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
+import java.text.MessageFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import model.Device;
@@ -31,7 +34,7 @@ public class DeviceController {
         deviceView.addTableMouseListener(new AddTableSelectionListener());
         deviceView.addEditBtnListener(new EditActionListener());
         deviceView.addDeleteBtnListener(new DeleteActionListener());
-        deviceView.addSaveBtnListener(new SaveActionListener());
+        deviceView.addPrintBtnListener(new PrintActionListener());
         deviceView.addCancelBtnListener(new CancelActionListener());
     }
 
@@ -84,13 +87,20 @@ public class DeviceController {
 
     }
 
-    private class SaveActionListener implements ActionListener {
+    private class PrintActionListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(deviceView, "null");
+            MessageFormat header = new MessageFormat("Devices management");
+            MessageFormat footer = new MessageFormat("Page{0, number, integer}");
+            
+            try {
+                deviceView.getTable().print(JTable.PrintMode.FIT_WIDTH, header, footer);
+                JOptionPane.showMessageDialog(deviceView, "    Printed successfully!");
+            } catch (PrinterException ex) {
+                JOptionPane.showMessageDialog(deviceView, ex);
+            }
         }
-
     }
 
     private class DeleteActionListener implements ActionListener {
